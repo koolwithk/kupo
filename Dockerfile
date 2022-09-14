@@ -12,7 +12,7 @@ RUN echo "substituters = https://cache.nixos.org https://hydra.iohk.io" >> /etc/
     echo "trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" >> /etc/nix/nix.conf
 
 WORKDIR /app/kupo
-RUN nix-env -iA cachix -f https://cachix.org/api/v1/install && cachix use kupo
+RUN nix-env --option filter-syscalls false -iA cachix -f https://cachix.org/api/v1/install && cachix use kupo
 COPY . .
 RUN nix-build -A kupo.components.exes.kupo -o dist
 RUN cp -r dist/* . && chmod +w dist/bin && chmod +x dist/bin/kupo
