@@ -6,7 +6,7 @@
 # --------------------------------- SETUP ------------------------------------ #
 #                                                                              #
 
-FROM nixos/nix:2.3.11 as build
+FROM nixos/nix:2.11.0 as build
 
 RUN echo "substituters = https://cache.nixos.org https://hydra.iohk.io" >> /etc/nix/nix.conf &&\
     echo "trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" >> /etc/nix/nix.conf
