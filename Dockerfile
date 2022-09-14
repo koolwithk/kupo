@@ -14,7 +14,7 @@ RUN echo "substituters = https://cache.nixos.org https://hydra.iohk.io" >> /etc/
 WORKDIR /app/kupo
 RUN nix-env --option filter-syscalls false -iA cachix -f https://cachix.org/api/v1/install && cachix use kupo
 COPY . .
-RUN nix-build -A kupo.components.exes.kupo -o dist
+RUN nix-build --option filter-syscalls false -A kupo.components.exes.kupo -o dist
 RUN cp -r dist/* . && chmod +w dist/bin && chmod +x dist/bin/kupo
 
 #                                                                              #
