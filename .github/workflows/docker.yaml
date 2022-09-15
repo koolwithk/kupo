@@ -51,7 +51,7 @@ jobs:
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
       with:
-        platforms: 'amd64,arm64'
+        platforms: 'arm64'
 
     - name: Set up Docker Buildx
       id: buildx
@@ -63,7 +63,7 @@ jobs:
       with:
         context: .
         push: true
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/arm64
         tags: ${{ steps.base-variables.outputs.image }}:latest
         target: ${{ matrix.target }}
         cache-from: type=registry,ref=${{ steps.base-variables.outputs.image }}:latest
@@ -75,7 +75,7 @@ jobs:
       with:
         context: .
         push: true
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/arm64
         tags: ${{ steps.base-variables.outputs.image }}:${{ steps.tag-variables.outputs.tag }}
         target: ${{ matrix.target }}
         cache-from: type=registry,ref=${{ steps.base-variables.outputs.image }}:latest
